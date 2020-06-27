@@ -1,4 +1,4 @@
 export default function isDeliveryFree(anOrder) {
-  let basePrice = anOrder.basePrice;
+  const { basePrice } = anOrder;
   return (basePrice > 1000);
 }
