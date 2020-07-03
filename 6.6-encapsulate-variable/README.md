@@ -22,3 +22,7 @@
 4. 변수의 접근 범위를 제한한다.
 5. 테스트 한다.
 6. 변수 값이 레코드라면 레코드 캡슐화하기를 적용할지 고려해본다.
+
+## Sources
+
+* https://refactoring.com/catalog/encapsulateVariable.html
