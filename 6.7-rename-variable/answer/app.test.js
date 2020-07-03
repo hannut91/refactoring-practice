@@ -5,5 +5,5 @@ const area = height * weight
 let a = area;
 
 test('area', () => {
-  expect(a).toBe(10000);
+  expect(area).toBe(10000);
 });
