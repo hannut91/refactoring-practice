@@ -1,4 +1,4 @@
-import { defaultOwner } from './app';
+import defaultOwner from './app';
 
 describe('Get defaultOwner', () => {
   it('has name', () => {
