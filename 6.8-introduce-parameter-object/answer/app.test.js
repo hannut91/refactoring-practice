@@ -1,5 +1,7 @@
 import readingOutsideRange from './app';
 
+import Range from './Range';
+
 describe('readingOutsideRange', () => {
   const station = {
     name: 'ZB1',
@@ -13,9 +15,10 @@ describe('readingOutsideRange', () => {
   };
   const min = 52;
   const max = 57;
+  const range = new Range(min, max);
 
   it('returns ranges in normal', () => {
-    const readings = readingOutsideRange(station, min, max, null);
+    const readings = readingOutsideRange(station, min, max, range);
 
     expect(readings).toHaveLength(3);
   });
