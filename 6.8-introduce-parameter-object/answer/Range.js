@@ -1,5 +1,6 @@
 export default class Range {
   #min;
+
   #max;
 
   constructor(min, max) {
