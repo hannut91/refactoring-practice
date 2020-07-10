@@ -15,7 +15,7 @@ describe('Range', () => {
 
         expect(range.contains(7)).toBe(true);
       });
-    })
+    });
 
     context('with not contains value', () => {
       it('returns true', () => {
@@ -23,6 +23,6 @@ describe('Range', () => {
 
         expect(range.contains(30)).toBe(false);
       });
-    })
+    });
   });
 });
