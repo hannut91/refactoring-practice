@@ -15,8 +15,8 @@ describe('readingOutsideRange', () => {
   const max = 57;
 
   it('returns ranges in normal', () => {
-    const range = readingOutsideRange(station, min, max);
+    const readings = readingOutsideRange(station, min, max, null);
 
-    expect(range).toHaveLength(3);
+    expect(readings).toHaveLength(3);
   });
 });
