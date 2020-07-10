@@ -14,6 +14,7 @@ module.exports = {
   globals: {
     context: 'readonly',
   },
+  parser: 'babel-eslint',
   rules: {
   },
 };
