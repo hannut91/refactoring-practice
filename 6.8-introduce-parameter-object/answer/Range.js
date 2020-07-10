@@ -14,4 +14,8 @@ export default class Range {
   get max() {
     return this.#max;
   }
+
+  contains(value) {
+    return this.#min <= value && value <= this.#max;
+  }
 }
