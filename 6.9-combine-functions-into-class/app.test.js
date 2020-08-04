@@ -50,7 +50,7 @@ describe('TeaCharge', () => {
     it('returns calculated charge with tax', () => {
       const rawReading = acquireReading();
       const aReading = new Reading(rawReading);
-      const taxableCharge = Math.max(0, aReading.baseCharge - taxThreshold(aReading.year));
+      const taxableCharge = calculateTaxableCharge(aReading);
 
       expect(taxableCharge).toBe(9500);
     });
