@@ -1,3 +1,9 @@
+const taxThreshold = (year) => 500;
+
+const baseRate = (month, year) => 1000;
+
+const baseCharge = (aReading) => baseRate(aReading.month, aReading.year) * aReading.quantity;
+
 const acquireReading = () => ({
   customer: 'ivan',
   quantity: 10,
@@ -5,58 +11,36 @@ const acquireReading = () => ({
   year: 2017,
 });
 
-class Reading {
-  constructor({ customer, quantity, month, year }) {
-    this._customer = customer;
-    this._quantity = quantity;
-    this._month = month;
-    this._year = year;
-  }
-
-  get customer() { return this._customer }
-  get quantity() { return this._quantity }
-  get month() { return this._month }
-  get year() { return this._year }
-
-  get baseCharge() {
-    return baseRate(this.month, this.year) * this.quantity
-  }
-
-  get taxableCharge() {
-    return Math.max(0, this.baseCharge - this.taxThreshold);
-  }
-
-  get taxThreshold() {
-    return 500;
-  }
-}
-
 describe('TeaCharge', () => {
   describe('client 1', () => {
     it('returns calcualted base charge', () => {
-      const rawReading = acquireReading();
-      const aReading = new Reading(rawReading);
-      const charge = aReading.baseCharge;
+      const aReading = acquireReading();
+      const charge = baseRate(aReading.month, aReading.year)
+        * aReading.quantity;
 
       expect(charge).toBe(10000);
     });
   });
 
-  describe('client2', () => {
+  describe('client 2', () => {
     it('returns calculated charge with tax', () => {
-      const rawReading = acquireReading();
-      const aReading = new Reading(rawReading);
-      const taxableCharge = aReading.taxableCharge;
+      const aReading = acquireReading();
+      const base = baseRate(aReading.month, aReading.year)
+        * aReading.quantity;
+      const taxableCharge = Math.max(0, base - taxThreshold(aReading.year));
 
       expect(taxableCharge).toBe(9500);
     });
   });
 
-  describe('client3', () => {
+  describe('client 3', () => {
     it('returns calculated charge with tax', () => {
-      const rawReading = acquireReading();
-      const aReading = new Reading(rawReading);
-      const charge = aReading.baseCharge;
+      const aReading = acquireReading();
+      const charge = calculateBaseCharge(aReading);
+
+      function calculateBaseCharge(aReading) {
+        return baseRate(aReading.month, aReading.year) * aReading.quantity;
+      }
 
       expect(charge).toBe(10000);
     });
