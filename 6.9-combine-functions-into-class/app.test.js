@@ -13,6 +13,20 @@ const acquireReading = () => ({
   year: 2017,
 });
 
+class Reading {
+  constructor({ customer, quantity, month, year }) {
+    this._customer = customer;
+    this._quantity = quantity;
+    this._month = month;
+    this._year = year;
+  }
+
+  get customer() { return this._customer }
+  get quantity() { return this._quantity }
+  get month() { return this._month }
+  get year() { return this._year }
+}
+
 describe('TeaCharge', () => {
   describe('client 1', () => {
     it('returns calcualted base charge', () => {
