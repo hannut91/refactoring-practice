@@ -44,10 +44,9 @@ describe('TeaCharge', () => {
 
   describe('client2', () => {
     it('returns calculated charge with tax', () => {
-      const aReading = acquireReading();
-      const base = baseRate(aReading.month, aReading.year)
-        * aReading.quantity;
-      const taxableCharge = Math.max(0, base - taxThreshold(aReading.year));
+      const rawReading = acquireReading();
+      const aReading = new Reading(rawReading);
+      const taxableCharge = Math.max(0, aReading.baseCharge - taxThreshold(aReading.year));
 
       expect(taxableCharge).toBe(9500);
     });
