@@ -6,6 +6,10 @@ const calculateBaseCharge = (aReading) => (
   baseRate(aReading.month, aReading.year) * aReading.quantity
 );
 
+const calculateTaxableCharge = (aReading) => {
+  return Math.max(0, aReading.baseCharge - taxThreshold(aReading.year));
+}
+
 const acquireReading = () => ({
   customer: 'ivan',
   quantity: 10,
