@@ -54,7 +54,7 @@ describe('TeaCharge', () => {
     it('returns calculated charge with tax', () => {
       const rawReading = acquireReading();
       const aReading = new Reading(rawReading);
-      const taxableCharge = calculateTaxableCharge(aReading);
+      const taxableCharge = aReading.taxableCharge;
 
       expect(taxableCharge).toBe(9500);
     });
