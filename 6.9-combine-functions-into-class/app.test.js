@@ -26,7 +26,7 @@ class Reading {
   get month() { return this._month }
   get year() { return this._year }
 
-  get calculateBaseCharge() {
+  get baseCharge() {
     return baseRate(this.month, this.year) * this.quantity
   }
 }
@@ -57,7 +57,7 @@ describe('TeaCharge', () => {
     it('returns calculated charge with tax', () => {
       const rawReading = acquireReading();
       const aReading = new Reading(rawReading);
-      const charge = aReading.calculateBaseCharge;
+      const charge = aReading.baseCharge;
 
       expect(charge).toBe(10000);
     });
