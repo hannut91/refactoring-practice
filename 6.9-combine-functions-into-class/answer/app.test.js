@@ -15,14 +15,6 @@ class Reading {
     this.year = year;
   }
 
-  get customer() { return this.customer; }
-
-  get quantity() { return this.quantity; }
-
-  get month() { return this.month; }
-
-  get year() { return this.year; }
-
   get baseRate() {
     return 1000;
   }

@@ -1,8 +1,10 @@
-const taxThreshold = (year) => 500;
+const taxThreshold = () => 500;
 
-const baseRate = (month, year) => 1000;
+const baseRate = () => 1000;
 
-const baseCharge = (aReading) => baseRate(aReading.month, aReading.year) * aReading.quantity;
+const calculateBaseCharge = (aReading) => (
+  baseRate(aReading.month, aReading.year) * aReading.quantity
+);
 
 const acquireReading = () => ({
   customer: 'ivan',
@@ -22,7 +24,7 @@ describe('TeaCharge', () => {
     });
   });
 
-  describe('client 2', () => {
+  describe('client2', () => {
     it('returns calculated charge with tax', () => {
       const aReading = acquireReading();
       const base = baseRate(aReading.month, aReading.year)
@@ -33,14 +35,10 @@ describe('TeaCharge', () => {
     });
   });
 
-  describe('client 3', () => {
+  describe('client3', () => {
     it('returns calculated charge with tax', () => {
       const aReading = acquireReading();
       const charge = calculateBaseCharge(aReading);
-
-      function calculateBaseCharge(aReading) {
-        return baseRate(aReading.month, aReading.year) * aReading.quantity;
-      }
 
       expect(charge).toBe(10000);
     });
