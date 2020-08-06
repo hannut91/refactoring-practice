@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const taxThreshold = () => 500;
 
 const baseRate = () => 1000;
@@ -5,6 +7,8 @@ const baseRate = () => 1000;
 const calculateBaseCharge = (aReading) => (
   baseRate(aReading.month, aReading.year) * aReading.quantity
 );
+
+const enrichReading = (reading) => _.cloneDeep(reading);
 
 const acquireReading = () => ({
   customer: 'ivan',
@@ -42,5 +46,16 @@ describe('TeaCharge', () => {
 
       expect(charge).toBe(10000);
     });
+  });
+});
+
+describe('enrichReading', () => {
+  it('returns deep copied reading', () => {
+    const originReading = {};
+    const reading = enrichReading(originReading);
+
+    reading.text = 'some text';
+
+    expect(originReading).toEqual({});
   });
 });
