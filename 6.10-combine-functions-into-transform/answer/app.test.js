@@ -8,7 +8,11 @@ const calculateBaseCharge = (aReading) => (
   baseRate(aReading.month, aReading.year) * aReading.quantity
 );
 
-const enrichReading = (reading) => _.cloneDeep(reading);
+const enrichReading = (reading) => {
+  const result = _.cloneDeep(reading);
+  result.baseCharge = calculateBaseCharge(result);
+  return result;
+}
 
 const acquireReading = () => ({
   customer: 'ivan',
@@ -41,8 +45,9 @@ describe('TeaCharge', () => {
 
   describe('client3', () => {
     it('returns calculated charge with tax', () => {
-      const aReading = acquireReading();
-      const charge = calculateBaseCharge(aReading);
+      const rawReading = acquireReading();
+      const aReading = enrichReading(rawReading);
+      const charge = aReading.baseCharge;
 
       expect(charge).toBe(10000);
     });
