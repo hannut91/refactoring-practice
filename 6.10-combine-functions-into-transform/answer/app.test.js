@@ -24,9 +24,9 @@ const acquireReading = () => ({
 describe('TeaCharge', () => {
   describe('client 1', () => {
     it('returns calcualted base charge', () => {
-      const aReading = acquireReading();
-      const charge = baseRate(aReading.month, aReading.year)
-        * aReading.quantity;
+      const rawReading = acquireReading();
+      const aReading = enrichReading(rawReading);
+      const charge = aReading.baseCharge;
 
       expect(charge).toBe(10000);
     });
