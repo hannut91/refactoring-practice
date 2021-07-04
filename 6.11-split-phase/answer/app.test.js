@@ -1,3 +1,7 @@
+function calculateTotalPrice(product, quantity) {
+  return product.basePrice * quantity;
+}
+
 function calculateDiscountPrice(product, quantity) {
   return Math.max(quantity - product.discountThreshold, 0)
   * product.basePrice
@@ -15,16 +19,14 @@ function calculateShippingCost(totalPrice, quantity, shippingMethod) {
 }
 
 function priceOrder(product, quantity, shippingMethod) {
-  const basePrice = product.basePrice * quantity;
+  const totalPrice = calculateTotalPrice(product, quantity);
   const discount = calculateDiscountPrice(product, quantity);
   const shippingCost = calculateShippingCost(
-    basePrice,
+    totalPrice,
     quantity,
     shippingMethod,
   );
-  const price = basePrice - discount + shippingCost;
-
-  return price;
+  return totalPrice - discount + shippingCost;
 }
 
 describe('priceOrder', () => {
